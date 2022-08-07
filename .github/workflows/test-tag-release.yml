@@ -36,7 +36,7 @@ jobs:
           fetch-depth: 0
 
       - run: |
-          git tag "$(svu next)"
+          git tag "$(svu next --force-patch-increment)"
           git push --tags
 
   release:
