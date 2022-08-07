@@ -1,0 +1,23 @@
+{
+  "extends": ["group:recommended"],
+  "dependencyDashboard": true,
+  "platformAutomerge": true,
+  "pre-commit": {
+    "enabled": true
+  },
+  "labels": ["renovate"],
+  "rangeStrategy": "pin",
+  "rebaseWhen": "behind-base-branch",
+  "semanticCommits": "enabled",
+  "regexManagers": [
+    {
+      "description": "Upgrade node version in a GitHub workflow",
+      "fileMatch": ["(^workflow-templates|\\.github/workflows)/[^/]+\\.ya?ml$"],
+      "matchStrings": [
+        "# renovate: node-version\\s*node-version:\\s*\"(?<currentValue>.*)\""
+      ],
+      "datasourceTemplate": "node",
+      "depNameTemplate": "node"
+    }
+  ]
+}
