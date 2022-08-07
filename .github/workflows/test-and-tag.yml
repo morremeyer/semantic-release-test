@@ -24,8 +24,7 @@ jobs:
   tag:
     name: tag
     runs-on: ubuntu-latest
-    image: ghcr.io/caarlos0/svu
-
+    container: ghcr.io/caarlos0/svu
     steps:
       - name: Checkout
         uses: actions/checkout@v2
