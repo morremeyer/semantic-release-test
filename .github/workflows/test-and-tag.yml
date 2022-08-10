@@ -1,0 +1,33 @@
+name: test & tag
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3.0.2
+
+      - name: go test
+        uses: ./.github/workflows/test
+
+  tag:
+    needs: test
+    runs-on: ubuntu-latest
+    container: ghcr.io/caarlos0/svu
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.0.2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.EZ_BOT_TOKEN }}
+
+      - run: |
+          git tag "$(svu next)"
+          git push --tags
