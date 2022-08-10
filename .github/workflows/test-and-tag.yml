@@ -26,6 +26,12 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.EZ_BOT_TOKEN }}
 
-      - run: |
-          git tag "$(svu next)"
-          git push --tags
+      - name: Tag new version
+        run: |
+          if [ $(git tag -l "$(svu next)") ]; then
+            echo "Tag already exists, no release necessary"
+          else
+            echo "Tagging new version"
+            git tag "$(svu next)"
+            git push --tags
+          fi
