@@ -10,13 +10,7 @@ permissions:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3.0.2
-
-      - name: go test
-        uses: ./.github/workflows/test
+    uses: morremeyer/semantic-release-test/.github/workflows/test.yml@$GITHUB_SHA
 
   tag:
     needs: test
