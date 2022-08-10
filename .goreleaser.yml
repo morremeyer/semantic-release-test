@@ -31,7 +31,7 @@ changelog:
       order: 2
 
     - title: "Dependency updates"
-      regexp: "^.*chore\(deps\):+.*$"
+      regexp: "^.*chore(deps):+.*$"
       order: 3
 
   filters:
