@@ -11,7 +11,13 @@ permissions:
 
 jobs:
   test:
-    uses: morremeyer/semantic-release-test/.github/workflows/test.yml@$GITHUB_SHA
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3.0.2
+
+      - name: go test
+        uses: ./.github/actions/test
 
   release:
     needs: test
@@ -28,7 +34,7 @@ jobs:
           # renovate: go-version
           go-version: 1.18.4
 
-      - uses: docker/login-action@v2
+      - uses: docker/login-action@v2.0.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
